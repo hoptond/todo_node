@@ -16,8 +16,8 @@ app.route('/')
         //TODO: get parsed TODO updates from form on page
         //TODO: update each entry in the database
     }).put((req, res) => {
-    //TODO: get parsed update from NEW form
-    //TODO: insert new todo into the database
+        //TODO: get parsed update from NEW form
+        //TODO: insert new todo into the database
     })
 
 app.listen(port, ()=> {
