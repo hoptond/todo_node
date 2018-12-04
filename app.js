@@ -41,7 +41,7 @@ app.route('/todos/new')
     client.connect(function (err, client) {
         const db = client.db('todo')
         console.log(req.body)
-        db.collection('tasks').insertOne({desc: req.body.desc, status: 0}, (err, r)=>{
+        db.collection('tasks').insertOne({desc: req.body.desc}, (err, r) => {
             assert.equal(err, null)
             assert.equal(1, r.insertedCount)
             console.log('inserted stuff into db')
@@ -50,9 +50,18 @@ app.route('/todos/new')
     })
 })
 
-app.put('/todos/:id', (req, res)=> {
-    //TODO: get parsed TODO updates from form on page
-    //TODO: update the todo's status in the database
+app.put('/todos/:id', jsonParser, (req, res)=> {
+    client.connect(function (err, client) {
+        const db = client.db('todo')
+        console.log(req.params)
+        console.log(req.body)
+        db.collection('todo').updateOne({_id: req.params.id}, {$set: {status: req.body.status}})
+        assert.equal(err, null)
+        console.log('updated task' + req.params.id + 'in db with status of ' + req.body.status)
+        var dataResponse = json.stringify({id: req.params.id, status: req.body.status})
+        res.send(dataResponse)
+        //TODO: test this stuff tomorrow to see if it works
+    })
 })
 
 app.get('/todos?completed=1', (req, res) => {
