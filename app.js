@@ -7,6 +7,7 @@ const port = 8080
 
 
 app.engine('handlebars',exphbs({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
 
 app.get('/', (req, res)=> {
     res.redirect('/todos')
@@ -14,7 +15,7 @@ app.get('/', (req, res)=> {
 
 app.route('/todos')
     .get((req, res) => {
-        res.send("This is where our todo app will go once we've ported it over")
+        res.render('home')
         //TODO: retrieve todos from database
         //TODO: load template
         //TODO: put todos into template
