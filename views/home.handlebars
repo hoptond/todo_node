@@ -1,14 +1,12 @@
 <h1>Blue Todo</h1>
 <form method="post">
     <ul>
-        <li>
-            <input type="checkbox" id='1' name="1">
-            <span>{{todo.[0]}}</span>
-        </li>
-        <li>
-            <input type="checkbox" id='2' name="2">
-            <span>{{todo.[1]}}</span>
-        </li>
+        {{#each todo}}
+            <li>
+                <input type="checkbox" id='1' name="1">
+                <span>{{this}}</span>
+            </li>
+        {{/each}}
         <li>
             <input name="new_task" type="text" placeholder="Enter a new task here...">
         </li>
