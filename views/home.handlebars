@@ -1,15 +1,16 @@
 <h1>Blue Todo</h1>
-<form method="post">
-    <ul>
-        {{#each results}}
-            <li>
-                <input type="checkbox" id='{{this.id}}' name="{{this.id}}">
-                <span>{{this.desc}}</span>
-            </li>
-        {{/each}}
+<ul>
+    {{#each tasks}}
         <li>
-            <input name="new_task" type="text" placeholder="Enter a new task here...">
+            <input type="checkbox" id='{{this._id}}' name="{{this._id}}">
+            <span>{{this.desc}}</span>
         </li>
-    </ul>
-    <input type="submit" value="SUBMIT">
-</form>
+    {{/each}}
+    <form method="post" action="todos/new">
+        <li>
+            <input name="desc" type="text" placeholder="Enter a new task here...">
+            <input type="submit" value="SUBMIT">
+        </li>
+    </form>
+</ul>
+
