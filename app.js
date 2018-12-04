@@ -12,7 +12,10 @@ const connection = mysql.createConnection({
     database: 'todo'
 })
 
-app.engine('handlebars',exphbs({defaultLayout: 'main'}))
+
+
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
@@ -22,11 +25,12 @@ app.get('/', (req, res)=> {
 
 app.route('/todos')
     .get((req, res) => {
-        res.render('home' , { todo: ['feed grass', 'mow cat']})
-        //TODO: retrieve todos from database
-        //TODO: load template
-        //TODO: put todos into template
-        //TODO: send to user
+        connection.query('SELECT `id`, `desc`, `status` FROM tasks', function (error, results, fields) {
+            if(error) {
+                throw error
+            }
+            res.render('home' , {results})
+        })
     }).post((req, res) => {
         //TODO: get parsed update from NEW form
         //TODO: insert new todo into the database

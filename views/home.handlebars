@@ -1,10 +1,10 @@
 <h1>Blue Todo</h1>
 <form method="post">
     <ul>
-        {{#each todo}}
+        {{#each results}}
             <li>
-                <input type="checkbox" id='1' name="1">
-                <span>{{this}}</span>
+                <input type="checkbox" id='{{this.id}}' name="{{this.id}}">
+                <span>{{this.desc}}</span>
             </li>
         {{/each}}
         <li>
