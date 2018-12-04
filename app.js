@@ -1,9 +1,12 @@
 const express = require('express')
+const exphbs = require('express-handlebars')
 
 const app = express()
 
 const port = 8080
 
+
+app.engine('handlebars',exphbs({defaultLayout: 'main'}))
 
 app.get('/', (req, res)=> {
     res.redirect('/todos')
