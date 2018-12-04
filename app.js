@@ -1,10 +1,16 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const mysql = require('mysql')
 
 const app = express()
 
 const port = 8080
 
+const connection = mysql.createConnection({
+    host: '192.168.20.20',
+    user: 'root',
+    database: 'todo'
+})
 
 app.engine('handlebars',exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
