@@ -16,7 +16,7 @@ app.get('/', (req, res)=> {
 
 app.route('/todos')
     .get((req, res) => {
-        res.render('home' , { todo: 'feed grass'})
+        res.render('home' , { todo: ['feed grass', 'mow cat']})
         //TODO: retrieve todos from database
         //TODO: load template
         //TODO: put todos into template
