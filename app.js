@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 app.route('/todos')
     .get((req, res) => {
         var findObject = {}
-        if (req.query.completed == '1') {
+        if (req.query.completed === '1') {
             findObject = {status: true}
         }
         client.connect(function (err, client) {
