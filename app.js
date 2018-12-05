@@ -29,9 +29,13 @@ app.get('/', (req, res) => {
 
 app.route('/todos')
     .get((req, res) => {
+        var findObject = {}
+        if (req.query.completed == '1') {
+            findObject = {status: true}
+        }
         client.connect(function (err, client) {
             const db = client.db('todo')
-            let results = db.collection('tasks').find({}).toArray(function (err, docs) {
+            let results = db.collection('tasks').find(findObject).toArray(function (err, docs) {
                 if(docs.length > 0) {
                     res.render('home', {tasks: docs})
                 }
