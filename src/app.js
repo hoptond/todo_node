@@ -1,5 +1,4 @@
 const express = require('express')
-const exphbs = require('express-handlebars')
 const Mongo = require('mongodb')
 const mongoClient = Mongo.MongoClient
 const mongoUrl = 'mongodb://localhost:27017/'
@@ -16,8 +15,6 @@ const jsonParser = bodyParser.json()
 
 const urlencondedParser = bodyParser.urlencoded({extended: false})
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}))
-app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
