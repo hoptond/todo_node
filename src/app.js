@@ -53,6 +53,7 @@ app.route('/todos')
         db.collection('tasks').insertOne({desc: req.body.desc}, (err, r) => {
             assert.equal(err, null)
             console.log('inserted new task with description of ' + req.body.desc + ' into db')
+            res.sendStatus(201)
         })
     })
 })
