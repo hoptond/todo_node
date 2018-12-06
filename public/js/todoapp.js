@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'list.js';
+import './list';
 import 'new.js';
 import 'task.js'
 
@@ -17,7 +17,7 @@ class TodoApp extends React.Component {
         };
     }
     render() {
-
+        
     }
 }
 
