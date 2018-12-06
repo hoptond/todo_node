@@ -9,15 +9,13 @@ class TodoApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            history: [{
-                squares: Array(9).fill(null)
-            }],
-            xIsNext: true,
-            stepNumber: 0
+            test: 'this works'
         };
     }
     render() {
-        
+        return(
+            <h1>Blue Todo</h1>
+        )
     }
 }
 
