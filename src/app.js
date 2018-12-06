@@ -1,5 +1,4 @@
 const express = require('express')
-const exphbs = require('express-handlebars')
 const Mongo = require('mongodb')
 const mongoClient = Mongo.MongoClient
 const mongoUrl = 'mongodb://localhost:27017/'
@@ -7,6 +6,11 @@ const assert = require('assert')
 const bodyParser = require('body-parser')
 
 const app = express()
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 const port = 8080
 
@@ -16,9 +20,7 @@ const jsonParser = bodyParser.json()
 
 const urlencondedParser = bodyParser.urlencoded({extended: false})
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}))
-app.set('view engine', 'handlebars')
-app.use(express.static('public/'))
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
@@ -36,8 +38,9 @@ app.route('/todos')
         client.connect(function (err, client) {
             const db = client.db('todo')
             let results = db.collection('tasks').find(findObject).toArray(function (err, docs) {
+                console.log(docs)
                 if(docs.length > 0) {
-                    res.render('home', {tasks: docs})
+                    res.json(docs)
                 }
             })
         })
@@ -46,10 +49,10 @@ app.route('/todos')
 app.route('/todos')
     .post(urlencondedParser, (req, res)=> {
     client.connect(function (err, client) {
+        console.log(req.body)
         const db = client.db('todo')
         db.collection('tasks').insertOne({desc: req.body.desc}, (err, r) => {
             assert.equal(err, null)
-            assert.equal(1, r.insertedCount)
             console.log('inserted stuff into db')
         })
     })
