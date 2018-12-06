@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NewTask from 'new.js'
 
 class List extends Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class List extends Component {
                 <ul className="List">
                     {<li>test</li>}
                 </ul>
+                <NewTask/>
             </div>
         );
     }
