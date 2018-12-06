@@ -69,10 +69,6 @@ app.put('/todos/:id', jsonParser, (req, res)=> {
     })
 })
 
-app.get('/todos?completed=1', (req, res) => {
-    //TODO: only show completed todos
-})
-
 app.listen(port, ()=> {
   console.log('node server running')
 })
