@@ -51,7 +51,7 @@ app.route('/todos')
     client.connect(function (err, client) {
         console.log(req.body)
         const db = client.db('todo')
-        db.collection('tasks').insertOne({desc: req.body.desc}, (err, r) => {
+        db.collection('tasks').insertOne({desc: req.body.desc, status: false}, (err, r) => {
             assert.equal(err, null)
             console.log('inserted new task with description of ' + req.body.desc + ' into db')
             res.sendStatus(201)
